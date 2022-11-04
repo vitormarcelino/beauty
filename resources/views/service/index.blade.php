@@ -8,8 +8,8 @@
             <div class="col-12">
                 <div class="card mb-4">
                     <div class="card-header pb-0">
-                        <h6>Pacientes</h6>
-                        <a href="{{ route('patients.create') }}" class="btn btn-outline-primary btn-sm mb-0">Adicionar Novo</a>
+                        <h6>Serviços</h6>
+                        <a href="{{ route('services.create') }}" class="btn btn-outline-primary btn-sm mb-0">Adicionar Novo</a>
                     </div>
                     <div class="card-body px-0 pt-0 pb-2">
                         <div class="table-responsive p-0">
@@ -17,31 +17,27 @@
                                 <thead>
                                     <tr>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nome</th>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Celular</th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Observações</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Descrição</th>
                                         <th class="text-secondary opacity-7"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($patients as $patient)
+                                    @foreach($services as $service)
                                         <tr>
                                             <td>
                                                 <div class="d-flex px-2 py-1">
                                                     <div class="d-flex flex-column justify-content-center">
                                                         <h6 class="mb-0 text-sm">
-                                                            <a href="{{ route('patients.show', [ $patient->id ]) }}">{{ $patient->name }}</a>
+                                                            <a href="{{ route('services.show', [ $service->id ]) }}">{{ $service->name }}</a>
                                                         </h6>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td>
-                                                <p class="text-xs font-weight-bold mb-0">{{ $patient->phone }}</p>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">{{ $patient->notes }}</span>
+                                                <p class="text-xs font-weight-bold mb-0">{{ $service->description }}</p>
                                             </td>
                                             <td class="align-middle">
-                                                <a href="{{ route('patients.edit', [$patient->id]) }}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip">
+                                                <a href="{{ route('services.edit', [$service->id]) }}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip">
                                                     Editar
                                                 </a>
                                             </td>

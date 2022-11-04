@@ -27,7 +27,10 @@ class PatientController extends Controller
      */
     public function create()
     {
-        return view('patient.create');
+        return view('patient.form', [
+            'action' => route('patients.store'),
+            'method' => 'POST'
+        ]);
     }
 
     /**
@@ -50,7 +53,7 @@ class PatientController extends Controller
      */
     public function show(Patient $patient)
     {
-        //
+        return view('patient.show', ['patient' => $patient]);
     }
 
     /**
@@ -61,7 +64,11 @@ class PatientController extends Controller
      */
     public function edit(Patient $patient)
     {
-        //
+        return view('patient.form', [
+            'patient' => $patient,
+            'action' => route('patients.update', [ $patient->id ]),
+            'method' => 'PATCH'
+        ]);
     }
 
     /**
@@ -73,7 +80,9 @@ class PatientController extends Controller
      */
     public function update(Request $request, Patient $patient)
     {
-        //
+        $input = $request->all();
+        $patient->update($input);
+        return redirect(route('patients.index'));
     }
 
     /**

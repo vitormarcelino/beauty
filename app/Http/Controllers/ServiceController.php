@@ -14,7 +14,10 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        //
+        $services = Service::all();
+        return view('service.index', [
+            'services' => $services
+        ]);
     }
 
     /**
@@ -24,7 +27,10 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        //
+        return view('service.form', [
+            'action' => route('services.store'),
+            'method' => 'POST'
+        ]);
     }
 
     /**
@@ -35,7 +41,8 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $service = Service::create($request->all());
+        return redirect(route('services.show', [$service->id]));
     }
 
     /**
@@ -46,7 +53,7 @@ class ServiceController extends Controller
      */
     public function show(Service $service)
     {
-        //
+        return view('service.show', ['service' => $service]);
     }
 
     /**
@@ -57,7 +64,11 @@ class ServiceController extends Controller
      */
     public function edit(Service $service)
     {
-        //
+        return view('service.form', [
+            'service' => $service,
+            'action' => route('services.update', [ $service->id ]),
+            'method' => 'PATCH'
+        ]);
     }
 
     /**
@@ -69,7 +80,9 @@ class ServiceController extends Controller
      */
     public function update(Request $request, Service $service)
     {
-        //
+        $input = $request->all();
+        $service->update($input);
+        return redirect(route('services.index'));
     }
 
     /**

@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\ServiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,8 +32,7 @@ Route::group(['middleware' => 'auth'], function () {
 	})->name('dashboard');
 
 	Route::resource('patients', PatientController::class);
-
-
+	Route::resource('services', ServiceController::class);
 	
 	Route::get('billing', function () {
 		return view('billing');

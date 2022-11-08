@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\SchedulingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,9 +32,25 @@ Route::group(['middleware' => 'auth'], function () {
 		return view('dashboard');
 	})->name('dashboard');
 
+	Route::get('home', function () {
+		return view('dashboard');
+	})->name('home');
+
 	Route::resource('patients', PatientController::class);
 	Route::resource('services', ServiceController::class);
-	
+	Route::resource('scheduling', SchedulingController::class);
+
+
+	Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], function () {
+		Route::post('abilities/destroy', 'AbilitiesController@massDestroy')->name('abilities.massDestroy');
+		Route::resource('abilities', 'AbilitiesController');
+		Route::delete('roles/destroy', 'RolesController@massDestroy')->name('roles.massDestroy');
+		Route::resource('roles', 'RolesController');
+		Route::delete('users/destroy', 'UsersController@massDestroy')->name('users.massDestroy');
+		Route::resource('users', 'UsersController');
+	});
+
+
 	Route::get('billing', function () {
 		return view('billing');
 	})->name('billing');
@@ -66,7 +83,7 @@ Route::group(['middleware' => 'auth'], function () {
 		return view('static-sign-up');
 	})->name('sign-up');
 
-    Route::get('/logout', [SessionsController::class, 'destroy']);
+    Route::get('/logout', [SessionsController::class, 'destroy'])->name('logout');
 	Route::get('/user-profile', [InfoUserController::class, 'create']);
 	Route::post('/user-profile', [InfoUserController::class, 'store']);
     Route::get('/login', function () {
@@ -85,7 +102,6 @@ Route::group(['middleware' => 'guest'], function () {
 	Route::post('/forgot-password', [ResetController::class, 'sendEmail']);
 	Route::get('/reset-password/{token}', [ResetController::class, 'resetPass'])->name('password.reset');
 	Route::post('/reset-password', [ChangePasswordController::class, 'changePassword'])->name('password.update');
-
 });
 
 Route::get('/login', function () {

@@ -1,0 +1,67 @@
+{
+    "auth.signin": "Entrar",
+    "auth.logout": "Sair",
+
+    "client": "Cliente|Clientes",
+    "clients": "Clientes",
+    "client.new": "Novo Cliente",
+    "client.edit": "Editar Cliente",
+    "client.name": "Nome",
+    "client.phone": "Telefone",
+    "client.description": "Descrição",
+    "client.flash.save.success": "Cliente adicionado com sucesso.",
+    "client.flash.update.success": "Cliente atualizado com sucesso.",
+    "client.flash.not_found": "Cliente não encontrado",
+
+    "events": "Eventos",
+
+    "description": "Descrição",
+
+    "eventTypes": "Tipos de Evento",
+
+    "services": "Seviços",
+
+    "actions": "Ações",
+
+    "weekday.monday": "Segunda",
+    "weekday.tuesday": "Terça",
+    "weekday.wednesday": "Quarta",
+    "weekday.thursday": "Quinta",
+    "weekday.friday": "Sexta",
+    "weekday.saturday": "Sábado",
+    "weekday.sunday": "Domingo",
+
+    "minute": "minuto|minutos",
+    "hour": "hora|horas",
+
+    "calendar": "Calendário",
+    "dashboard": "Painel",
+
+    "last_update": "Última Atualização",
+    "save": "Salvar",
+    "cancel":"Cancelar",
+
+    "cruds.user.fields.id": "Id",
+    "cruds.user.fields.name": "Nome",
+    "cruds.user.fields.email": "Email",
+    "cruds.user.fields.roles": "Tipo",
+    "cruds.user.fields.password": "Senha",
+
+    "global.view": "Visualizar",
+    "global.edit": "Editar",
+    "global.delete": "Delete",
+    "global.list": "Listagem",
+    "global.add": "Adicionar",
+    "global.save": "Salvar",
+    "global.select_all": "Marcar Todos",
+    "global.deselect_all": "Desmarcar Todos",
+    "global.back_to_list": "Voltar",
+
+    "global.roles.admin": "Administrador",
+
+    "cruds.user.title": "Usuários",
+    "cruds.user.title_singular": "Usuário",
+
+    "payments": "Pagamentos"
+
+}

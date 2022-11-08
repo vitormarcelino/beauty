@@ -24,7 +24,10 @@ class SchedulingController extends Controller
      */
     public function create()
     {
-        //
+        return view('scheduling.form', [
+            'action' => route('scheduling.store'),
+            'method' => 'POST'
+        ]);
     }
 
     /**

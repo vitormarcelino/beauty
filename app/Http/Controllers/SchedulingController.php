@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Patient;
 use App\Models\Scheduling;
+use App\Models\Service;
 use Illuminate\Http\Request;
 
 class SchedulingController extends Controller
@@ -22,11 +24,13 @@ class SchedulingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Patient $patient)
     {
         return view('scheduling.form', [
             'action' => route('scheduling.store'),
-            'method' => 'POST'
+            'method' => 'POST',
+            'patient' => $patient,
+            'services' => Service::all()
         ]);
     }
 
@@ -38,7 +42,8 @@ class SchedulingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $scheduling = Scheduling::create($request->all());
+        return redirect(route('patients.show', [$scheduling->patient_id]));
     }
 
     /**

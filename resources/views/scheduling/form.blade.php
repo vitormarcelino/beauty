@@ -2,31 +2,80 @@
 
 @section('content')
 
-<div class="card">
-    <div class="card-header pb-0 px-3">
-        <h6 class="mb-0">Agendamento</h6>
-    </div>
-    <div class="card-body pt-4 p-3">
-        <form action="{{ $action }}" method="POST" role="form text-left"> <!-- enctype="multipart/form-data" -->
-            @csrf
-            @if($method == "PATCH")
-                @method('PATCH')
-            @endif
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="name" class="form-control-label">Paciente</label>
-                        <select class="selectpicker" data-live-search="true">
-                            <option data-tokens="ketchup mustard">Hot Dog, Fries and a Soda</option>
-                            <option data-tokens="mustard">Burger, Shake and a Smile</option>
-                            <option data-tokens="frosting">Sugar, Spice and all things nice</option>
-                        </select>
 
-                        <!-- <input class="form-control" type="text" @if(isset($patient)) value="{{ $patient->name }}" @endif placeholder="Nome" name="name" onfocus="focused(this)" onfocusout="defocused(this)"> -->
+<div class="content">
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title">Novo Agendamento</h3>
+        </div>
+        <div class="card-body">
+            <form action="{{ $action }}" method="POST" role="form text-left"> <!-- enctype="multipart/form-data" -->
+                @csrf
+                @if($method == "PATCH")
+                    @method('PATCH')
+                @endif
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <select class="custom-select" disabled>
+                                <option  value="{{ $patient->id}}">{{ $patient->name }}</option>
+                            </select>
+                        </div>
                     </div>
+                    <input type="hidden" name="patient_id" value="{{ $patient->id}}" />
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="service_id">Serviço</label>
+                            <select class="custom-select" name="service_id">
+                                @foreach($services as $service)
+                                    <option value="{{ $service->id }}">{{ $service->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="date">Data e Hora</label>
+                            <input name="date" class="form-control datetimepicker" />
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="value">Valor</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">R$</span>
+                                </div>
+                                <input type="text" class="form-control money" name="value">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="paid">Pago</label>
+                            <select class="custom-select" name="paid">
+                                <option value="0">Não</option>
+                                <option value="1">Sim</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="notes">Observações</label>
+                            <textarea class="form-control" rows="3" placeholder="Observações" name="notes"></textarea>
+                        </div>
+                    </div>
+
                 </div>
-            </div>
-        </form>
+                <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn bg-primary btn-md mt-4 mb-4">Salvar</button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 

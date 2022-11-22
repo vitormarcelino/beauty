@@ -8,7 +8,7 @@
         <div class="card-body login-card-body">
             <p class="login-box-msg">{{ __('Login') }}</p>
 
-            <form action="{{ route('login') }}" method="post">
+            <form action="/session" method="post">
                 @csrf
                 <div class="input-group mb-3">
                     <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
@@ -34,7 +34,7 @@
                 <div class="row ">
                     <!-- /.col -->
                     <div class="col-12">
-                        <button type="submit" class="btn btn-primary btn-block btn-flat">{{ __('auth.signin') }}</button>
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">Entrar</button>
                     </div>
                     <!-- /.col -->
                 </div>
